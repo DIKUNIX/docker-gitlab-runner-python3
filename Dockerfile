@@ -1,23 +1,5 @@
-FROM ruby:2.1
+FROM dikunix/docker-gitlab-runner-alpine:latest
 
 MAINTAINER Oleks <oleks@oleks.info>
 
-RUN perl -pi -e 's/jessie/testing/g' /etc/apt/sources.list
-
-RUN DEBIAN_FRONTEND=noninteractive apt-get update \
-  && DEBIAN_FRONTEND=noninteractive apt-get upgrade -y \
-  && DEBIAN_FRONTEND=noninteractive apt-get dist-upgrade -y \
-  && rm -rf /var/lib/apt/lists/*
-
-RUN DEBIAN_FRONTEND=noninteractive apt-get update \
-  && DEBIAN_FRONTEND=noninteractive apt-get install -y \
-    python3-pip \
-  && rm -rf /var/lib/apt/lists/*
-
-RUN useradd --create-home --uid 1000 docker
-RUN chown -R docker:docker /home/docker
-USER docker
-
-WORKDIR /home/docker/
-
-CMD ["irb"]
+RUN apk --no-cache add python3
