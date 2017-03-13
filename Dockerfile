@@ -4,6 +4,6 @@ MAINTAINER Oleks <oleks@oleks.info>
 
 USER root
 
-RUN apk --no-cache add python3
+RUN apk --no-cache add python3 python3-dev
 
 USER docker
