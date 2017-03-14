@@ -7,3 +7,10 @@ USER root
 RUN apk --no-cache add python3 python3-dev
 
 USER docker
+
+RUN pip3 install --user \
+  mypy \
+  flake8 \
+  pytest \
+  pexpect \
+  hypothesis
