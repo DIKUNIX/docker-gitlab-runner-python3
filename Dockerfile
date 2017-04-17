@@ -6,11 +6,16 @@ USER root
 
 RUN apk --no-cache add python3 python3-dev
 
-USER docker
+RUN apk --no-cache --virtual .build-dependencies add alpine-sdk
 
-RUN pip3 install --user \
+RUN pip3 install --upgrade pip && \
+  pip3 install \
   mypy \
   flake8 \
   pytest \
   pexpect \
   hypothesis
+
+RUN apk del .build-dependencies
+
+USER docker
